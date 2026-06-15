@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Rishitha ❤️</title><style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+overflow-x:hidden;
+color:white;
+text-align:center;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.hero h1{
+font-size:3rem;
+margin-bottom:10px;
+animation:glow 2s infinite;
+}
+
+.hero h2{
+font-size:1.5rem;
+margin-bottom:20px;
+}
+
+@keyframes glow{
+0%{text-shadow:0 0 10px white;}
+50%{text-shadow:0 0 30px #fff;}
+100%{text-shadow:0 0 10px white;}
+}
+
+.btn{
+padding:15px 35px;
+background:white;
+color:#ff4081;
+border:none;
+border-radius:30px;
+font-size:18px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.btn:hover{
+transform:scale(1.05);
+}
+
+.section{
+padding:50px 20px;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.gallery img{
+width:100%;
+height:350px;
+object-fit:cover;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.3);
+transition:.4s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+.message{
+max-width:900px;
+margin:auto;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(10px);
+padding:30px;
+border-radius:20px;
+line-height:2;
+font-size:18px;
+}
+
+.message h2{
+margin-bottom:20px;
+}
+
+footer{
+padding:30px;
+font-size:20px;
+font-weight:bold;
+}
+
+.hearts{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+overflow:hidden;
+}
+
+.heart{
+position:absolute;
+color:white;
+font-size:20px;
+animation:fall 8s linear infinite;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-10vh);
+opacity:1;
+}
+100%{
+transform:translateY(110vh);
+opacity:0;
+}
+}
+</style></head><body><div class="hearts" id="hearts"></div><section class="hero">
+<h1>🎂 Happy Birthday Rishitha ❤️</h1>
+<h2>From Venkata Durgarao Chowdary</h2><button class="btn"
+onclick="document.getElementById('letter').scrollIntoView({behavior:'smooth'})">
+Open My Heart ❤️
+</button>
+
+</section><section class="section">
+<h2>📸 Our Beautiful Memories</h2><div class="gallery"><img src="couple1.jpg" alt="">
+<img src="couple2.jpg" alt="">
+<img src="rishitha1.jpg" alt="">
+<img src="rishitha2.jpg" alt="">
+<img src="rishitha3.jpg" alt="">
+<img src="rishitha_childhood.jpg" alt=""></div>
+</section><section class="section" id="letter"><div class="message"><h2>💖 A Letter To My Dearest Rishitha 💖</h2><p>
+Happy Birthday, My Love ❤️
+</p><p>
+Today is one of the most beautiful days because it is the day you came into this world and made it brighter.
+</p><p>
+Every smile of yours brings happiness to my heart.
+Every conversation with you becomes a memory I cherish.
+Every moment spent with you feels like a blessing.
+</p><p>
+You are kind, caring, beautiful, strong, and truly special.
+I feel grateful that you are a part of my life.
+</p><p>
+On your birthday, I pray that you achieve everything you dream of and that happiness follows you wherever you go.
+</p><p>
+I want you to know that my feelings for you are sincere and genuine.
+I am committed to standing beside you, respecting you, supporting you, and working toward a beautiful future together.
+</p><p>
+No matter what challenges life brings, I will always treasure the bond we share and continue choosing you with love, honesty, and dedication.
+</p><p>
+Thank you for bringing so much joy into my life.
+</p><p>
+Happy Birthday Once Again, My Princess ❤️👑
+</p><h3>
+Forever Yours ❤️<br><br>
+Venkata Durgarao Chowdary
+</h3></div></section><footer>
+❤️ Happy Birthday Rishitha ❤️
+</footer><audio autoplay loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio><script>
+
+function createHeart(){
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=Math.random()*25+15+"px";
+heart.style.animationDuration=Math.random()*5+5+"s";
+document.getElementById("hearts").appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},10000);
+}
+
+setInterval(createHeart,300);
+
+</script></body>
+</html>
