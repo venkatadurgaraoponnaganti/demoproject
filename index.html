@@ -18,7 +18,7 @@ body{
 }
 
 .hero{
-    height:100vh;
+    min-height:100vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -28,12 +28,11 @@ body{
 
 .hero h1{
     font-size:3rem;
-    margin-bottom:10px;
     animation:glow 2s infinite;
 }
 
 .hero h2{
-    font-size:1.4rem;
+    margin-top:10px;
     margin-bottom:25px;
 }
 
@@ -50,13 +49,13 @@ body{
     padding:15px 30px;
     border-radius:30px;
     font-size:18px;
-    cursor:pointer;
     font-weight:bold;
+    cursor:pointer;
 }
 
 .gallery-title{
+    margin:20px;
     font-size:2rem;
-    margin:30px 0;
 }
 
 .gallery{
@@ -72,7 +71,7 @@ body{
     object-fit:cover;
     border-radius:20px;
     box-shadow:0 5px 20px rgba(0,0,0,0.3);
-    transition:0.4s;
+    transition:.4s;
 }
 
 .gallery img:hover{
@@ -83,7 +82,7 @@ body{
     max-width:900px;
     margin:40px auto;
     padding:30px;
-    background:rgba(255,255,255,0.15);
+    background:rgba(255,255,255,.15);
     backdrop-filter:blur(10px);
     border-radius:20px;
     line-height:2;
@@ -95,8 +94,7 @@ body{
 }
 
 footer{
-    margin-top:40px;
-    padding:20px;
+    padding:30px;
     font-size:22px;
     font-weight:bold;
 }
@@ -108,11 +106,11 @@ footer{
     width:100%;
     height:100%;
     pointer-events:none;
+    z-index:998;
 }
 
 .heart{
     position:absolute;
-    color:white;
     animation:fall linear forwards;
 }
 
@@ -126,7 +124,18 @@ footer{
         opacity:0;
     }
 }
-</style></head><body><div class="hearts" id="hearts"></div><section class="hero">
+
+#fireworks{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:999;
+}
+</style></head><body><div class="hearts" id="hearts"></div>
+<canvas id="fireworks"></canvas><section class="hero">
     <h1>🎂 Happy Birthday Rishitha Chowdary ❤️</h1>
     <h2>From Venkata Durgarao Chowdary ❤️</h2><button class="btn"
 onclick="document.getElementById('letter').scrollIntoView({behavior:'smooth'})">
@@ -139,22 +148,18 @@ Open My Heart ❤️
 <img src="IMG-20250825-WA0029.jpg" alt="">
 <img src="IMG-20260312-WA0004.jpg" alt="">
 <img src="IMG-20260312-WA0042.jpg" alt="">
-<img src="IMG20251019200006.jpg" alt=""></div><section id="letter"><div class="message"><h2>💖 A Letter To My Dearest Rishitha 💖</h2><p>
-Happy Birthday, My Love ❤️
+<img src="IMG20251019200006.jpg" alt=""></div><section id="letter"><div class="message"><h2>💖 A Letter To My Dearest Rishitha 💖</h2><p>Happy Birthday, My Love ❤️</p><p>
+Today is one of the most beautiful days because it celebrates the amazing person you are.
 </p><p>
-Today is a special day because it celebrates the most beautiful person in my life.
+Your smile brightens my world, your kindness touches my heart, and every moment with you becomes a cherished memory.
 </p><p>
-Your smile brightens my days, your kindness inspires me, and your presence fills my heart with happiness.
+Thank you for bringing happiness, warmth, and meaning into my life.
 </p><p>
-Every memory we have shared is precious to me, and I look forward to creating many more beautiful memories together.
+On your special day, I wish you endless happiness, success, good health, and all the love you deserve.
 </p><p>
-On your birthday, I wish you happiness, success, good health, and endless reasons to smile.
+I deeply cherish our relationship and I am committed to building a beautiful future together based on trust, respect, understanding, and love.
 </p><p>
-Thank you for being such an amazing person. You make my life better simply by being in it.
-</p><p>
-I deeply cherish our relationship and I am committed to building a beautiful future together, with love, trust, respect, and support.
-</p><p>
-No matter what life brings, I will always treasure you and the special place you hold in my heart.
+No matter where life takes us, you will always hold a special place in my heart.
 </p><p>
 Happy Birthday Once Again, My Princess ❤️👑
 </p><h3>
@@ -162,7 +167,16 @@ Forever Yours ❤️<br><br>
 Venkata Durgarao Chowdary
 </h3></div></section><footer>
 ❤️ Happy Birthday Rishitha ❤️
-</footer><script>
+</footer><audio id="bgMusic" loop>
+    <source src="Amaran sai pallavi.mp3" type="audio/mpeg">
+</audio><script>
+
+// Start music after first touch/click
+document.addEventListener('click', function () {
+    document.getElementById('bgMusic').play();
+}, { once: true });
+
+// Falling hearts
 function createHeart(){
     const heart=document.createElement("div");
 
@@ -181,5 +195,60 @@ function createHeart(){
 }
 
 setInterval(createHeart,300);
+
+// Fireworks
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+function createFirework(){
+    const x=Math.random()*canvas.width;
+    const y=Math.random()*canvas.height/2;
+
+    for(let i=0;i<60;i++){
+        particles.push({
+            x:x,
+            y:y,
+            dx:(Math.random()-0.5)*8,
+            dy:(Math.random()-0.5)*8,
+            life:100,
+            radius:2
+        });
+    }
+}
+
+function animate(){
+    requestAnimationFrame(animate);
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    particles.forEach((p,index)=>{
+        p.x+=p.dx;
+        p.y+=p.dy;
+        p.life--;
+
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
+        ctx.fillStyle=`hsl(${Math.random()*360},100%,60%)`;
+        ctx.fill();
+
+        if(p.life<=0){
+            particles.splice(index,1);
+        }
+    });
+}
+
+setInterval(createFirework,1500);
+animate();
+
+window.addEventListener('resize',()=>{
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+});
+
 </script></body>
 </html>
